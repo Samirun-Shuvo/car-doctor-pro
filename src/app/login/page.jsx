@@ -1,4 +1,5 @@
-"use client";
+"use client"; // Add this at the very top
+
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
@@ -21,7 +22,7 @@ const Page = () => {
       email,
       password,
       redirect: true, // Handle redirection manually
-      callbackUrl:path?path:"/"
+      callbackUrl: path ? path : "/"
     });
 
     if (res?.error) {
