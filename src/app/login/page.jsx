@@ -1,7 +1,7 @@
-"use client"; // Add this at the very top
+"use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -22,7 +22,7 @@ const Page = () => {
       email,
       password,
       redirect: true, // Handle redirection manually
-      callbackUrl: path ? path : "/"
+      callbackUrl: path ? path : "/",
     });
 
     if (res?.error) {
@@ -86,4 +86,12 @@ const Page = () => {
   );
 };
 
-export default Page;
+const LoginPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default LoginPage;
